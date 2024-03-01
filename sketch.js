@@ -52,25 +52,24 @@ function execute(drawAlgorithm = true) {
         cards = generateCards(numSymbolsPerCard)
     }
 
-    for (let i = 0; i < numTotSymbols; i++) {
-        if (i >= fileNames.length) {
-            images[i] = images[0];
-        }
-    }
-
-    createCanvas(numTotSymbols * imageSize, cards.length * imageSize);
+let xOffset = 60;
+    createCanvas(xOffset+numTotSymbols * imageSize, cards.length * imageSize);
     textAlign(LEFT, LEFT);
     for (let y = 0; y < cards.length; y++) {
+        text("card #"+y, 0, imageSize / 2 + y * imageSize)
         for (let x = 0; x < numTotSymbols; x++) {
-            if (y == 0) {
-                text(x, x * imageSize, imageSize / 2 + y * imageSize)
-            }
+            // if (y == 0) {
+            //     text(x, x * imageSize, imageSize / 2 + y * imageSize)
+            // }
             if (cards[y].includes(x) == 1) {
-                image(images[x], x * imageSize, y * imageSize, imageSize, imageSize);
-                // text(x, imageSize / 2 + x * imageSize, imageSize / 2 + y * imageSize)
-
+                if (x >= images.length) {
+                    text(x, xOffset + x * imageSize, imageSize / 2 + y * imageSize)
+                } else {
+                    image(images[x], xOffset+ x * imageSize, y * imageSize, imageSize, imageSize);
+                    // text(x, imageSize / 2 + x * imageSize, imageSize / 2 + y * imageSize)
+                }
             } else {
-                text("-", imageSize / 2 + x * imageSize, imageSize / 2 + y * imageSize)
+                text("-", xOffset + imageSize / 2 + x * imageSize, imageSize / 2 + y * imageSize)
             }
         }
     }
