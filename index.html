@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="p5.min.js"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+</head>
+<body>
+<p>
+    # symbols per card: <input id="num_symbols_per_card_slider" type="range" min="1" max="10" value="4"  oninput="updateComponent('num_symbols_per_card_slider','num_symbols_per_card'), calculateNumSymbols()">
+    <span id="num_symbols_per_card">4</span><br/>
+    # total symbols: <input id="num_tot_symbols_slider" type="range" min="1" max="60" value="13" oninput="updateComponent('num_tot_symbols_slider','num_tot_symbols')">
+    <span id="num_tot_symbols">13</span><br/>
+    <button id="run_draft">Run Cards Generation (draft)</button><br/><br/>
+
+    # symbols per card: <input id="num_symbols_per_card_slider2" type="range" min="1" max="10" value="4"  oninput="updateComponent('num_symbols_per_card_slider2','num_symbols_per_card2'), calculateNumSymbols2()">
+    <span id="num_symbols_per_card2">4</span><br/>
+    # total symbols: <span id="num_tot_symbols2">57</span><br/>
+    <button id="run">Run Cards Generation (correct)</button>
+</p>
+</body>
+<script>
+    function updateComponent(slider, span) {
+        var slider = document.getElementById(slider);
+        var num_agents = document.getElementById(span);
+        num_agents.textContent = slider.value;
+    }
+    function calculateNumSymbols() {
+        let v = parseInt(document.getElementById('num_symbols_per_card_slider').value);
+        let numSymbols = ((v-1)*(v-1))+v;
+        document.getElementById('num_tot_symbols_slider').value = numSymbols;
+        document.getElementById('num_tot_symbols').textContent = numSymbols;
+    }
+    function calculateNumSymbols2() {
+        let v = parseInt(document.getElementById('num_symbols_per_card_slider2').value);
+        let numSymbols = ((v-1)*(v-1))+v;
+        document.getElementById('num_tot_symbols2').textContent = numSymbols;
+    }
+</script>
+</html>
